@@ -1,7 +1,6 @@
 import type { ReactNode } from "react";
-import { ArrowRight } from "lucide-react";
 
-type Props = {
+type ButtonProps = {
   children: ReactNode;
   variant?: "primary" | "secondary";
 };
@@ -9,22 +8,17 @@ type Props = {
 export default function Button({
   children,
   variant = "primary",
-}: Props) {
+}: ButtonProps) {
   const styles =
     variant === "primary"
-      ? "bg-cyan-500 text-black hover:bg-cyan-400"
-      : "border border-white/20 bg-white/5 text-white hover:border-cyan-400 hover:bg-cyan-500/10";
+      ? "bg-cyan-400 text-black hover:bg-cyan-300"
+      : "border border-white/20 bg-transparent text-white hover:border-cyan-400 hover:text-cyan-300";
 
   return (
     <button
-      className={`group flex items-center gap-2 rounded-2xl px-8 py-4 font-semibold transition-all duration-300 hover:scale-105 ${styles}`}
+      className={`rounded-2xl px-8 py-4 font-semibold transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_35px_rgba(34,211,238,.25)] ${styles}`}
     >
       {children}
-
-      <ArrowRight
-        size={18}
-        className="transition-transform duration-300 group-hover:translate-x-1"
-      />
     </button>
   );
 }

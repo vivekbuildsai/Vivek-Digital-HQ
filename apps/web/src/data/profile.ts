@@ -1,10 +1,12 @@
-export const profile = {
+import type { Profile } from "../types/profile";
+
+export const profile: Profile = {
   name: "Vivek Singh",
 
   role: "Software Engineer",
 
   tagline:
-    "Building cloud-native systems through automation, Kubernetes, Docker, AWS and modern DevOps practices.",
+    "Building production-grade cloud infrastructure through Kubernetes, Docker, AWS and automation.",
 
   focus: [
     "Kubernetes",
@@ -13,6 +15,5 @@ export const profile = {
     "Terraform",
     "GitHub Actions",
     "Linux",
-    "Python",
   ],
 };
