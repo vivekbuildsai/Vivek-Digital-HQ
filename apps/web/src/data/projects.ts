@@ -9,11 +9,14 @@ export const projects: Project[] = [
 
     category: "Kubernetes Fundamentals",
 
+    overview:
+      "This project demonstrates deployment of an Nginx application on Kubernetes using Minikube. It focuses on understanding Deployments, ReplicaSets, Pods and Services while learning the Kubernetes deployment workflow.",
+
     challenge:
-      "Deploy an Nginx application on Kubernetes while understanding Deployments, ReplicaSets and Services.",
+      "Deploy an Nginx web server on Kubernetes while understanding how Deployments, ReplicaSets, Pods and Services work together.",
 
     solution:
-      "Built a Kubernetes Deployment with a NodePort Service using Minikube. Implemented rolling updates, scaling and service exposure to understand Kubernetes core objects.",
+      "Created Deployment and Service manifests, deployed them to Minikube, exposed the application through a NodePort Service and performed rolling updates and scaling operations.",
 
     architecture: [
       "Browser",
@@ -23,11 +26,43 @@ export const projects: Project[] = [
       "Pod",
     ],
 
+    kubernetesObjects: [
+      "Deployment",
+      "ReplicaSet",
+      "Pod",
+      "NodePort Service",
+    ],
+
+    projectStructure: [
+      "project1_deploy_nginx/",
+      "├── deployment.yaml",
+      "├── service.yaml",
+      "└── README.md",
+    ],
+
+    commands: [
+      "kubectl apply -f deployment.yaml",
+      "kubectl apply -f service.yaml",
+      "kubectl get all",
+      "kubectl describe deployment nginx-deployment",
+      "kubectl rollout restart deployment nginx-deployment",
+      "kubectl delete -f deployment.yaml",
+    ],
+
     learnings: [
-      "Deployments & ReplicaSets",
-      "NodePort Services",
-      "Rolling Updates",
-      "Horizontal Scaling",
+      "Deployments manage ReplicaSets",
+      "ReplicaSets maintain desired Pods",
+      "Services expose workloads",
+      "Rolling updates",
+      "Scaling applications",
+    ],
+
+    interviewQuestions: [
+      "What is a Deployment?",
+      "Difference between Pod and Deployment?",
+      "Why do we need ReplicaSets?",
+      "What is NodePort?",
+      "How does a rolling update work?",
     ],
 
     technologies: [
@@ -55,32 +90,69 @@ export const projects: Project[] = [
 
     category: "Cloud Native Architecture",
 
+    overview:
+      "Built and deployed a complete three-tier application consisting of a frontend, backend API and MySQL database on Kubernetes.",
+
     challenge:
-      "Deploy a complete three-tier application consisting of a frontend, backend API and MySQL database on Kubernetes.",
+      "Deploy multiple interconnected services while enabling communication between frontend, backend and database.",
 
     solution:
-      "Containerized all application components and deployed them using Kubernetes Deployments, Services and Persistent Volumes while enabling communication between all tiers.",
+      "Containerized every application component and deployed them using Deployments, Services and Persistent Volume Claims.",
 
     architecture: [
       "Browser",
-      "React Frontend",
+      "Frontend",
       "Backend API",
       "MySQL",
       "Persistent Volume",
     ],
 
+    kubernetesObjects: [
+      "Deployment",
+      "ClusterIP Service",
+      "NodePort Service",
+      "Persistent Volume Claim",
+      "Pod",
+    ],
+
+    projectStructure: [
+      "project2_three_tier_app/",
+      "├── frontend/",
+      "├── backend/",
+      "├── mysql/",
+      "└── kubernetes/",
+    ],
+
+    commands: [
+      "kubectl apply -f .",
+      "kubectl get deployments",
+      "kubectl get svc",
+      "kubectl get pvc",
+      "kubectl logs <pod>",
+    ],
+
     learnings: [
       "Three-tier architecture",
-      "Service Communication",
-      "Persistent Storage",
-      "Application Networking",
+      "Service discovery",
+      "Networking",
+      "Persistent storage",
+      "Application deployment",
+    ],
+
+    interviewQuestions: [
+      "How do frontend and backend communicate?",
+      "Why ClusterIP?",
+      "Why NodePort?",
+      "How does Kubernetes DNS work?",
+      "Why Persistent Volumes?",
     ],
 
     technologies: [
       "React",
+      "Node.js",
+      "MySQL",
       "Docker",
       "Kubernetes",
-      "MySQL",
       "PVC",
     ],
 
@@ -93,7 +165,6 @@ export const projects: Project[] = [
 
     featured: true,
   },
-
   {
     id: 3,
     slug: "configmap-secret-pv-pvc",
@@ -102,11 +173,14 @@ export const projects: Project[] = [
 
     category: "Configuration & Storage",
 
+    overview:
+      "Implemented Kubernetes ConfigMaps, Secrets, Persistent Volumes and Persistent Volume Claims to separate configuration from application code and persist MySQL data.",
+
     challenge:
-      "Manage application configuration, sensitive credentials and persistent storage following Kubernetes best practices.",
+      "Externalize application configuration, securely manage credentials and ensure data persistence even after pod restarts.",
 
     solution:
-      "Configured ConfigMaps and Secrets to externalize application configuration while using Persistent Volumes and Persistent Volume Claims to ensure durable MySQL storage.",
+      "Used ConfigMaps for application configuration, Secrets for sensitive credentials and Persistent Volumes with Persistent Volume Claims to provide durable storage.",
 
     architecture: [
       "ConfigMap",
@@ -117,11 +191,51 @@ export const projects: Project[] = [
       "Persistent Volume Claim",
     ],
 
+    kubernetesObjects: [
+      "ConfigMap",
+      "Secret",
+      "Deployment",
+      "Persistent Volume",
+      "Persistent Volume Claim",
+      "Pod",
+    ],
+
+    projectStructure: [
+      "project3-configmap-secret-pv/",
+      "├── configmap.yaml",
+      "├── secret.yaml",
+      "├── pv.yaml",
+      "├── pvc.yaml",
+      "├── deployment.yaml",
+      "└── README.md",
+    ],
+
+    commands: [
+      "kubectl apply -f configmap.yaml",
+      "kubectl apply -f secret.yaml",
+      "kubectl apply -f pv.yaml",
+      "kubectl apply -f pvc.yaml",
+      "kubectl apply -f deployment.yaml",
+      "kubectl get configmap",
+      "kubectl get secret",
+      "kubectl get pv",
+      "kubectl get pvc",
+    ],
+
     learnings: [
-      "ConfigMaps",
-      "Secrets",
+      "Configuration management",
+      "Secrets management",
       "Persistent Volumes",
       "Persistent Volume Claims",
+      "Storage lifecycle",
+    ],
+
+    interviewQuestions: [
+      "What is a ConfigMap?",
+      "Difference between ConfigMap and Secret?",
+      "What is a Persistent Volume?",
+      "Why do we need a PVC?",
+      "How is storage bound in Kubernetes?",
     ],
 
     technologies: [
@@ -151,25 +265,62 @@ export const projects: Project[] = [
 
     category: "Stateful Workloads",
 
+    overview:
+      "Built a MySQL database using Kubernetes StatefulSets to understand stable pod identities, ordered deployment and persistent storage for stateful applications.",
+
     challenge:
-      "Deploy a database workload requiring stable identities, ordered deployment and persistent storage.",
+      "Deploy a database requiring stable identities and persistent storage while maintaining predictable startup and shutdown behaviour.",
 
     solution:
-      "Implemented a MySQL StatefulSet with persistent storage to understand how Kubernetes manages stateful applications and durable data.",
+      "Implemented a StatefulSet with persistent storage and a headless Service to provide stable networking and durable database storage.",
 
     architecture: [
       "Client",
-      "Service",
+      "Headless Service",
       "StatefulSet",
       "MySQL Pod",
       "Persistent Volume",
     ],
 
+    kubernetesObjects: [
+      "StatefulSet",
+      "Headless Service",
+      "Persistent Volume",
+      "Persistent Volume Claim",
+      "Pod",
+    ],
+
+    projectStructure: [
+      "project4-statefulset-mysql/",
+      "├── statefulset.yaml",
+      "├── service.yaml",
+      "├── pvc.yaml",
+      "└── README.md",
+    ],
+
+    commands: [
+      "kubectl apply -f statefulset.yaml",
+      "kubectl apply -f service.yaml",
+      "kubectl get statefulsets",
+      "kubectl describe statefulset mysql",
+      "kubectl get pods",
+      "kubectl get pvc",
+    ],
+
     learnings: [
       "StatefulSets",
-      "Stable Network Identity",
-      "Persistent Storage",
-      "Database Deployments",
+      "Stable pod identity",
+      "Ordered deployment",
+      "Persistent storage",
+      "Database workloads",
+    ],
+
+    interviewQuestions: [
+      "What is a StatefulSet?",
+      "Difference between StatefulSet and Deployment?",
+      "What is a Headless Service?",
+      "Why are StatefulSets used for databases?",
+      "How does Kubernetes preserve pod identity?",
     ],
 
     technologies: [
